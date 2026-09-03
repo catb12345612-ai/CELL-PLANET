@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cell Planet Khammam - Official Hub</title>
+    <style>
+        :root {
+            --primary-gold: #ffd700;
+            --gold-glow: rgba(255, 215, 0, 0.4);
+            --dark-card: rgba(24, 24, 28, 0.88);
+            --dark-bg: #0a0a0c;
+            --text-color: #f3e5ab;
+        }
+        body {
+            background: linear-gradient(135deg, var(--dark-bg), #18181c);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+        .glass-card {
+            background: var(--dark-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 15px auto;
+            max-width: 420px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        @keyframes flashGlow {
+            0% { border-color: #ffd700; box-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
+            50% { border-color: #ff3366; box-shadow: 0 0 25px rgba(255, 51, 102, 0.6); }
+            100% { border-color: #ffd700; box-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
+        }
+        .flash-banner {
+            animation: flashGlow 2.5s infinite;
+            border: 2px solid var(--primary-gold);
+            background: rgba(30, 20, 30, 0.95);
+        }
+        .logo-container img {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-gold);
+        }
+        .dev-top-bar {
+            font-size: 11px;
+            font-weight: bold;
+            color: #999;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .dev-top-bar a {
+            color: var(--primary-gold);
+            text-decoration: none;
+        }
+        h1 { font-size: 24px; color: var(--primary-gold); margin: 12px 0 5px 0; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .store-subtitle { font-size: 13px; color: #ccc; margin-bottom: 5px; }
+        .btn {
+            display: block;
+            background: #18181c;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: 0.2s;
+        }
+        .btn:hover { background: var(--primary-gold); color: var(--dark-bg); }
+        .btn-wa { background: #25d366; color: #fff; border: none; }
+        .btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border: none; }
+        .btn-main { background: var(--primary-gold); color: var(--dark-bg); font-size: 16px; }
+        .review-box {
+            background: rgba(15, 15, 18, 0.9);
+            border: 1px dashed rgba(255, 215, 0, 0.4);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-size: 13px;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+        }
+        .review-box:active { background: rgba(255, 215, 0, 0.1); }
+        .copy-tip { font-size: 10px; color: #ffd700; float: right; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <!-- Developer Information on Top (Small Bold Text) -->
+    <div class="dev-top-bar">
+        System Developed by <b><a href="https://www.instagram.com/syedzeeshanali07/" target="_blank">Syed Zeeshan Ali</a></b>
+    </div>
+
+    <!-- Prominent Customer / Business Header Card -->
+    <div class="glass-card" style="border: 2px solid var(--primary-gold);">
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 12px;">
+            <div class="logo-container">
+                <img src="cell-logo.png" alt="Cell Planet Logo">
+            </div>
+        </div>
+        <h1>Cell Planet Khammam</h1>
+        <div class="store-subtitle">Official Mobile Sales, Service & Accessories Hub</div>
+    </div>
+
+    <!-- Flash Attraction Banner -->
+    <div class="glass-card flash-banner">
+        <h3 style="color: #ff3366; margin: 0 0 5px 0; font-size: 17px;">⚡ SPECIAL VISITOR OFFER ⚡</h3>
+        <p style="font-size: 13px; margin: 0; color: #fff;">Tap any review below to copy it instantly, rate us on Google, and show your screen at the counter for an instant discount on mobile accessories!</p>
+    </div>
+
+    <!-- Contact & Social Hub -->
+    <div class="glass-card">
+        <h3 style="color: var(--primary-gold); font-size: 14px; margin-top: 0;">CONNECT & REACH US</h3>
+        <a href="tel:9550677795" class="btn">📞 Call: 9550677795</a>
+        <a href="https://wa.me/919550677795?text=Hi%20Cell%20Planet,%20I%20visited%20via%20your%20QR%20code!" target="_blank" class="btn btn-wa">💬 Chat on WhatsApp</a>
+        <a href="https://www.instagram.com/cellplanetkhammam?utm_source=qr&igsi=dzRuNjBtMGt5NTY0" target="_blank" class="btn btn-ig">📸 Instagram: @cellplanetkhammam</a>
+        <a href="mailto:cellplanet2024@gmail.com" class="btn" style="font-size: 12px;">✉️ Email 1: cellplanet2024@gmail.com</a>
+        <a href="mailto:cellpanetmobileskhammam@gmail.com" class="btn" style="font-size: 12px;">✉️ Email 2: cellpanetmobileskhammam@gmail.com</a>
+    </div>
+
+    <!-- Google Review Direct Action -->
+    <div class="glass-card" style="border-color: var(--primary-gold);">
+        <h3 style="color: var(--primary-gold); margin-top: 0;">★ Rate Us on Google Maps ★</h3>
+        <p style="font-size: 12px; color: #ccc;">Select a ready-made review template below, then tap to open Google Maps!</p>
+        <a href="https://maps.app.goo.gl/iJsdokuPTVru3bXH8" target="_blank" class="btn btn-main">⭐ Open Google Maps & Review</a>
+    </div>
+
+    <!-- 20+ Copy-Paste Reviews Section -->
+    <div class="glass-card">
+        <h3 style="color: var(--primary-gold); font-size: 14px; margin-top: 0;">📋 Tap Review to Copy</h3>
+        <p style="font-size: 11px; color: #aaa; margin-bottom: 10px;">Tap any text box below to copy it instantly:</p>
+
+        <div class="review-box" onclick="copyReview(this)">"Best mobile shop in Khammam! Got my screen replaced in just 30 minutes with genuine parts."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Very honest pricing and excellent customer service. Bought my new smartphone here at the best price."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Wide range of mobile accessories available. Staff is very polite and helpful."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Quick and reliable mobile repair service. My phone is working like brand new!"<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Trusted shop for all types of phone accessories, covers, and tempered glasses."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Got a great exchange value on my old phone. Highly recommended for upgrades!"<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Extremely professional service. They fixed my charging port issue right in front of me."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Best place in town to buy latest gadgets and audio accessories."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Genuine products with proper warranty support. Very happy with my purchase."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Super fast service and very friendly staff. Will definitely visit again."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Got my display fixed at a very affordable price compared to service centers."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Awesome collection of back covers and camera protectors for all models."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Transparent pricing with no hidden charges. Best mobile store in Khammam."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"They helped me transfer all my data to my new phone for free. Excellent support!"<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Quick diagnosis and professional repair. Highly satisfied with their work."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Best deals on smartphones and smartwatches. Very trustworthy shop."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Clean store environment with a huge variety of stock available instantly."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Got my battery replaced quickly. Phone backup is back to normal now!"<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Very polite behavior towards customers. Best tech support in the area."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Top-notch quality accessories and very reasonable pricing overall."<span class="copy-tip">Tap to copy</span></div>
+        <div class="review-box" onclick="copyReview(this)">"Saved my water-damaged phone when others said it was impossible. True experts!"<span class="copy-tip">Tap to copy</span></div>
+    </div>
+
+    <script>
+        function copyReview(element) {
+            const textToCopy = element.innerText.replace("TAP TO COPY", "").trim();
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const tip = element.querySelector('.copy-tip');
+                const originalText = tip.innerText;
+                tip.innerText = "COPIED!";
+                tip.style.color = "#25d366";
+                setTimeout(() => {
+                    tip.innerText = originalText;
+                    tip.style.color = "#ffd700";
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
