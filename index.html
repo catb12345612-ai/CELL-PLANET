@@ -3,157 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cell Planet Khammam | Review & Portal</title>
+    <title>Cell Planet Khammam | Premium Mobile Store</title>
 
     <!-- ================================================================= -->
     <!-- GOOGLE ANALYTICS TRACKER PLACEMENT                                -->
-    <!-- Replace 'G-XXXXXXXXXX' with your Google Analytics Measurement ID  -->
     <!-- ================================================================= -->
-    <script async src="<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ68W27HPH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-JJ68W27HPH');
-</script>"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ68W27HPH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-XXXXXXXXXX');
+      gtag('config', 'G-JJ68W27HPH');
     </script>
     <!-- ================================================================= -->
 
     <style>
+        /* Premium Light Theme Variables */
         :root {
-            --primary-gold: #ffd700;
-            --secondary-gold: #ffaa00;
-            --bg-color: #0b0c10;
-            --card-bg: rgba(22, 27, 34, 0.94);
-            --text-color: #ffffff;
-            --text-muted: #a0a0a0;
-            --border-glow: rgba(255, 215, 0, 0.35);
+            --primary-gold: #c5a059;
+            --primary-gold-hover: #b08d48;
+            --bg-color: #fcfcfc;
+            --card-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --border-light: rgba(0, 0, 0, 0.06);
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 25px 50px rgba(197, 160, 89, 0.15);
         }
 
-        /* Page Entrance Animation */
-        @keyframes pageEntrance {
-            0% { 
-                opacity: 0; 
-                transform: translateY(20px) scale(0.97); 
-                filter: brightness(0.2); 
-            }
-            60% { filter: brightness(1.2); }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-                filter: brightness(1); 
-            }
-        }
-
+        /* Anti-Copy Protections */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: transparent;
+            user-select: none; /* Prevent text selection */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -webkit-touch-callout: none; /* Prevent iOS popup */
+        }
+
+        @keyframes pageEntrance {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-            padding-bottom: 40px;
-            animation: pageEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            background-image: radial-gradient(circle at top right, rgba(197, 160, 89, 0.05), transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.02), transparent 40%);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            padding-bottom: 50px;
+            animation: pageEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            min-height: 100vh;
         }
 
-        /* Top Developer Bar */
+        /* Minimalist Developer Bar */
         .dev-top-bar {
-            background: rgba(255, 215, 0, 0.12);
-            border-bottom: 1px solid var(--primary-gold);
-            padding: 10px 15px;
-            font-size: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 15px;
+            font-size: 11px;
             text-align: center;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .dev-top-bar img {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             border: 1px solid var(--primary-gold);
             object-fit: cover;
         }
 
         .dev-top-bar a {
-            color: var(--primary-gold);
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 600;
+            transition: color 0.2s ease;
         }
+        
+        .dev-top-bar a:hover { color: var(--primary-gold); }
 
         .container {
-            max-width: 480px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 20px 15px;
+            padding: 30px 20px;
         }
 
-        /* Glassmorphism Cards */
-        .glass-card {
+        /* Premium White Cards */
+        .premium-card {
             background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 30px 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .glass-card:hover {
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
-            border-color: var(--primary-gold);
+        .premium-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+            border-color: rgba(197, 160, 89, 0.3);
+        }
+
+        /* Brand Header */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 25px;
         }
 
         .brand-logo {
-            width: 95px;
-            height: 95px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            border: 3px solid var(--primary-gold);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
-            margin-bottom: 12px;
+            border: 2px solid var(--bg-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08), 0 0 0 3px var(--primary-gold);
+            margin-bottom: 18px;
             object-fit: cover;
+            background-color: #fff;
         }
 
         .brand-title {
-            color: var(--primary-gold);
-            font-size: 24px;
+            color: var(--text-dark);
+            font-size: 26px;
             font-weight: 800;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
         }
 
         .brand-subtitle {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--text-muted);
-            margin-bottom: 18px;
+            font-weight: 500;
         }
 
-        /* Grid Action Buttons */
+        /* Sleek Action Buttons (Numbers Hidden) */
         .action-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
         }
 
         .btn-action {
@@ -161,137 +165,179 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 10px;
-            border-radius: 10px;
-            font-size: 13px;
+            padding: 14px 10px;
+            border-radius: 14px;
+            font-size: 14px;
             font-weight: 600;
             text-decoration: none;
-            color: #fff;
-            transition: transform 0.1s ease, filter 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            word-break: break-word;
+            color: var(--text-dark);
+            background: #f5f5f7;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
         }
 
-        .btn-action:active {
-            transform: scale(0.96);
-        }
+        .btn-action:active { transform: scale(0.96); }
+        .btn-action:hover { background: #ebebeb; }
 
-        .btn-call { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #000; grid-column: span 2; font-size: 15px; font-weight: 800; }
-        .btn-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); grid-column: span 2; font-weight: 700; }
-        .btn-instagram { background: linear-gradient(135deg, #f09433, #dc2743, #bc1888); grid-column: span 2; }
-        .btn-maps { background: linear-gradient(135deg, #ea4335, #c5221f); grid-column: span 2; }
-        .btn-email { background: linear-gradient(135deg, #ea4335, #4285f4); font-size: 11px; padding: 10px 6px; }
-
-        /* 3-Step Instruction Guide */
-        .steps-container {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 12px;
+        /* Specific Button Styles */
+        .btn-call { 
+            grid-column: span 2; 
+            background: var(--text-dark); 
+            color: #fff; 
+            font-size: 16px; 
             padding: 16px;
-            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .btn-call:hover { background: #333; }
+        .btn-whatsapp { color: #075E54; background: #E8F5E9; border: 1px solid #C8E6C9; grid-column: span 2; }
+        .btn-instagram { color: #C13584; background: #FCE4EC; border: 1px solid #F8BBD0; }
+        .btn-maps { color: #D32F2F; background: #FFEBEE; border: 1px solid #FFCDD2; }
+
+        /* 3-Step Elegant Guide */
+        .steps-container {
+            background: #fafafa;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-light);
         }
 
         .steps-title {
             color: var(--primary-gold);
-            font-size: 14px;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: 800;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .step-item {
-            font-size: 13px;
-            color: #e0e0e0;
-            margin: 6px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 10px 0;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            font-weight: 500;
         }
 
-        .step-item b { color: var(--primary-gold); }
-
-        /* Pulsing Direct Review Button */
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
-            50% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.85); transform: scale(1.02); }
-            100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+        .step-circle {
+            background: #fff;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
         }
 
-        .btn-direct-review {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            color: #000;
-            font-size: 15px;
-            font-weight: 800;
+        /* Dynamic Review Box (Magical Interaction) */
+        .dynamic-review-container {
             text-align: center;
-            border-radius: 12px;
-            text-decoration: none;
-            animation: pulseGlow 2s infinite ease-in-out;
-            margin-top: 10px;
         }
 
-        /* Flash Effect Animation */
-        @keyframes flashBoom {
-            0% { transform: scale(1); box-shadow: 0 0 5px var(--primary-gold); filter: brightness(1); }
-            50% { transform: scale(1.04); box-shadow: 0 0 50px #ffffff, 0 0 30px var(--primary-gold); filter: brightness(1.7); background-color: rgba(255, 215, 0, 0.35); }
-            100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); filter: brightness(1); }
-        }
-
-        .flash-effect {
-            animation: flashBoom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Review Boxes */
         .review-box {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px dashed rgba(255, 215, 0, 0.35);
-            padding: 14px;
-            margin: 10px 0;
-            border-radius: 10px;
-            font-size: 13px;
-            line-height: 1.45;
-            color: #f0f0f0;
+            background: #fff;
+            border: 2px dashed var(--primary-gold);
+            padding: 25px 20px;
+            border-radius: 16px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-dark);
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1);
+            margin-bottom: 15px;
         }
 
         .review-box:hover {
-            background: rgba(255, 215, 0, 0.1);
-            border-color: var(--primary-gold);
+            background: #fdfbf7;
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.2);
         }
 
         .review-box::after {
-            content: "Tap to Copy & Open Review Bar ➔";
+            content: "Tap anywhere inside to Copy & Rate ➔";
             display: block;
-            font-size: 10px;
+            font-size: 11px;
             color: var(--primary-gold);
-            margin-top: 6px;
+            margin-top: 15px;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(197, 160, 89, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
         }
 
-        /* Toast Popup */
+        .refresh-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            padding: 10px;
+        }
+        .refresh-btn:hover { color: var(--text-dark); }
+
+        /* Direct Review Button */
+        .btn-direct-review {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--text-dark), #333);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 14px;
+            text-decoration: none;
+            margin-top: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .btn-direct-review:active { transform: scale(0.96); }
+
+        /* Flash Animation */
+        @keyframes flashSuccess {
+            0% { transform: scale(1); box-shadow: 0 0 0 transparent; }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(197, 160, 89, 0.6); background: #fdfbf7; }
+            100% { transform: scale(1); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1); }
+        }
+        .flash-effect { animation: flashSuccess 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        /* Toast */
         .toast {
             visibility: hidden;
             min-width: 280px;
-            background-color: #1a1a1a;
+            background-color: var(--text-dark);
             color: #ffffff;
             text-align: center;
             border-radius: 30px;
-            padding: 14px 20px;
+            padding: 16px 24px;
             position: fixed;
             z-index: 9999;
             left: 50%;
-            bottom: 30px;
+            bottom: 40px;
             transform: translateX(-50%);
             font-size: 14px;
-            font-weight: 700;
-            border: 2px solid var(--primary-gold);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+            font-weight: 600;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
         .toast.show {
@@ -299,179 +345,200 @@
             animation: toastFadeIn 0.4s, toastFadeOut 0.4s 2.2s;
         }
 
-        @keyframes toastFadeIn {
-            from { bottom: 0; opacity: 0; }
-            to { bottom: 30px; opacity: 1; }
-        }
+        @keyframes toastFadeIn { from { bottom: 0; opacity: 0; } to { bottom: 40px; opacity: 1; } }
+        @keyframes toastFadeOut { from { bottom: 40px; opacity: 1; } to { bottom: 0; opacity: 0; } }
 
-        @keyframes toastFadeOut {
-            from { bottom: 30px; opacity: 1; }
-            to { bottom: 0; opacity: 0; }
-        }
-
-        /* Footer Copyright */
+        /* Footer */
         .footer-copyright {
             text-align: center;
-            font-size: 11px;
-            color: #888;
-            margin-top: 25px;
-            padding: 10px;
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 30px;
+            padding: 20px 10px;
+            border-top: 1px solid var(--border-light);
+            line-height: 1.8;
         }
-
-        .footer-copyright b {
-            color: var(--primary-gold);
-        }
+        .footer-copyright b { color: var(--text-dark); }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <!-- Disable Right Click -->
 
-    <!-- ================================================================= -->
-    <!-- DEVELOPER TOP BAR                                                 -->
-    <!-- ================================================================= -->
+    <!-- DEVELOPER TOP BAR -->
     <div class="dev-top-bar">
-       <img src="dev-logo.png.png" alt="Syed Zeeshan Ali Logo" style="width: 20px; height: 20px; vertical-align: middle; border-radius: 50%;">
-        <span>Developed by <b>Syed Zeeshaan Ali</b></span> | 
-        <a href="tel:7989698613">📞 7989698613</a> | 
-        <a href="https://www.instagram.com/syedzeeshaanali07/" target="_blank">📸 @syedzeeshaanali07</a>
+       <img src="dev-logo.png.png" alt="Syed Zeeshan Ali" onerror="this.src='https://ui-avatars.com/api/?name=SZ&background=c5a059&color=fff'">
+       <span><b>Syed Zeeshaan Ali</b></span> | 
+       <a href="tel:7989698613">Call</a> | 
+       <a href="https://www.instagram.com/syedzeeshaanali07/" target="_blank">Instagram</a>
     </div>
 
     <div class="container">
 
-        <!-- ================================================================= -->
-        <!-- CELL PLANET BRANDING & CONTACTS                                   -->
-        <!-- ================================================================= -->
-        <div class="glass-card" style="text-align: center;">
-            <img src="cell-logo.png.jfif" alt="Cell Planet Khammam Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/95/ffd700/000000?text=CELL+PLANET'">
+        <!-- BRANDING & CONTACTS -->
+        <div class="premium-card brand-header">
+            <img src="cell-logo.png.jfif" alt="Cell Planet Khammam" class="brand-logo" onerror="this.src='https://via.placeholder.com/110/c5a059/ffffff?text=CP'">
             <h1 class="brand-title">CELL PLANET</h1>
-            <p class="brand-subtitle">Smartphones, Premium Accessories & Rapid Repairs | Khammam</p>
+            <p class="brand-subtitle">Smartphones, Premium Accessories & Rapid Repairs</p>
 
-            <div class="action-grid">
-                <a href="tel:9550677795" class="btn-action btn-call">📞 Call Now: 95506 77795</a>
-                <a href="https://wa.me/919550677795" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp: 95506 77795</a>
-                <a href="https://www.instagram.com/cellplanetkhammam?utm_source=qr&igsi=dzRuNjBtMGt5NTY0" target="_blank" class="btn-action btn-instagram">📸 Instagram (@cellplanetkhammam)</a>
-                <a href="https://www.google.com/maps?cid=5164307951894865629" target="_blank" class="btn-action btn-maps">📍 Open Shop Location on Maps</a>
-                <a href="mailto:Cellplanet2024@gmail.com" class="btn-action btn-email">✉️ Cellplanet2024@gmail.com</a>
-                <a href="mailto:2.cellplanetmobileskhammam@gmail.com" class="btn-action btn-email">✉️ 2.cellplanetmobiles...</a>
+            <div class="action-grid" style="margin-top: 25px;">
+                <a href="tel:9550677795" class="btn-action btn-call">📞 Call Cell Planet</a>
+                <a href="https://wa.me/919550677795" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp Us</a>
+                <a href="https://www.instagram.com/cellplanetkhammam?utm_source=qr&igsi=dzRuNjBtMGt5NTY0" target="_blank" class="btn-action btn-instagram">📸 Instagram</a>
+                <a href="https://www.google.com/maps?cid=5164307951894865629" target="_blank" class="btn-action btn-maps">📍 Shop Location</a>
             </div>
         </div>
 
-        <!-- ================================================================= -->
-        <!-- 3-STEP GUIDE                                                      -->
-        <!-- ================================================================= -->
+        <!-- 3-STEP GUIDE -->
         <div class="steps-container">
-            <div class="steps-title">⚡ How to Leave a 5-Star Review ⚡</div>
-            <div class="step-item">1️⃣ <b>TAP</b> any comment below to copy it instantly.</div>
-            <div class="step-item">2️⃣ <b>PASTE</b> it into the Google Maps review bar.</div>
-            <div class="step-item">3️⃣ <b>RATE</b> us 5 Stars ⭐⭐⭐⭐⭐ & Submit!</div>
+            <div class="steps-title">Leave a 5-Star Review</div>
+            <div class="step-item"><div class="step-circle">1</div> <b>Tap</b> the review box below to copy.</div>
+            <div class="step-item"><div class="step-circle">2</div> <b>Paste</b> it into Google Maps.</div>
+            <div class="step-item"><div class="step-circle">3</div> <b>Rate</b> us 5 Stars ⭐⭐⭐⭐⭐</div>
         </div>
 
-        <!-- ================================================================= -->
-        <!-- DIRECT GOOGLE REVIEW LINK                                         -->
-        <!-- ================================================================= -->
-        <div class="glass-card" style="text-align: center;">
-            <h3 style="color: var(--primary-gold); font-size: 16px; margin-bottom: 6px;">⭐ Write Custom Feedback ⭐</h3>
-            <p style="font-size: 12px; color: #ccc;">Want to type your own review directly on Google Maps?</p>
-            <a href="https://search.google.com/local/writereview?placeid=ChIJFxR6ddJZNDoR3SZrd7hOq0c" target="_blank" class="btn-direct-review" onclick="triggerFlash(this)">⭐ Open Google Direct Review Bar</a>
+        <!-- DYNAMIC 50+ REVIEW GENERATOR -->
+        <div class="premium-card dynamic-review-container">
+            <h3 style="color: var(--text-dark); font-size: 18px; margin-bottom: 20px; font-weight: 800;">📝 Auto-Generated Review</h3>
+            
+            <!-- This box holds the dynamic text -->
+            <div class="review-box" id="dynamicReviewBox" onclick="copyDynamicReview()">
+                Loading a great review for you...
+            </div>
+            
+            <button class="refresh-btn" onclick="shuffleReview()">
+                🔄 Tap here to see a different review
+            </button>
         </div>
 
-        <!-- ================================================================= -->
-        <!-- 21 PRE-WRITTEN REVIEWS (CELL PLANET KHAMMAM)                       -->
-        <!-- ================================================================= -->
-        <div class="glass-card">
-            <h3 style="color: var(--primary-gold); font-size: 15px; margin-bottom: 12px; text-align: center;">📋 Tap a Review Below to Copy & Rate</h3>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Best mobile shop in Khammam! Got my smartphone screen replaced quickly and working flawlessly.')">Best mobile shop in Khammam! Got my smartphone screen replaced quickly and working flawlessly.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Cell Planet offers honest pricing and top-notch customer service in Khammam. Highly recommended!')">Cell Planet offers honest pricing and top-notch customer service in Khammam. Highly recommended!</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Huge variety of premium mobile covers, back cases, and tempered glass at Cell Planet Khammam.')">Huge variety of premium mobile covers, back cases, and tempered glass at Cell Planet Khammam.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Fast and super reliable mobile repair service. My display issue was fixed in under an hour!')">Fast and super reliable mobile repair service. My display issue was fixed in under an hour!</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Trusted store for original smartphone accessories, fast chargers, and wireless neckbands in Khammam.')">Trusted store for original smartphone accessories, fast chargers, and wireless neckbands in Khammam.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Got an amazing exchange deal on my old phone at Cell Planet. Smooth and transparent service.')">Got an amazing exchange deal on my old phone at Cell Planet. Smooth and transparent service.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Extremely professional technicians. They solved my phone camera glass problem perfectly!')">Extremely professional technicians. They solved my phone camera glass problem perfectly!</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Genuine gadgets with official warranty support. Extremely satisfied with my purchase from Cell Planet.')">Genuine gadgets with official warranty support. Extremely satisfied with my purchase from Cell Planet.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Quick turnaround time for repairs and very welcoming staff in Khammam. Will definitely visit again!')">Quick turnaround time for repairs and very welcoming staff in Khammam. Will definitely visit again!</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Got my battery replaced at a very affordable price. My battery backup is fantastic now.')">Got my battery replaced at a very affordable price. My battery backup is fantastic now.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Awesome collection of smartwatches, Bluetooth earbuds, and stylish phone cases at Cell Planet.')">Awesome collection of smartwatches, Bluetooth earbuds, and stylish phone cases at Cell Planet.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Clear pricing with zero hidden charges. Best mobile care hub in Khammam!')">Clear pricing with zero hidden charges. Best mobile care hub in Khammam!</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'They helped me transfer all my phone data to my new phone seamlessly. Exceptional support!')">They helped me transfer all my phone data to my new phone seamlessly. Exceptional support!</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Quick diagnosis and super clean repair work by the expert team at Cell Planet Khammam.')">Quick diagnosis and super clean repair work by the expert team at Cell Planet Khammam.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Best discounts on brand new smartphones and accessories in Khammam.')">Best discounts on brand new smartphones and accessories in Khammam.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Very polite staff and expert technicians. They explain every technical detail clearly.')">Very polite staff and expert technicians. They explain every technical detail clearly.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Top quality original UV screen guards and camera lens protectors available here.')">Top quality original UV screen guards and camera lens protectors available here.</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Saved my water-damaged smartphone when other repair centers said it was impossible!')">Saved my water-damaged smartphone when other repair centers said it was impossible!</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'Clean shop setup, quick service, and original products. 10/10 recommendation for Cell Planet!')">Clean shop setup, quick service, and original products. 10/10 recommendation for Cell Planet!</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'The best experience buying mobile accessories in Khammam. Everything available under one roof!')">The best experience buying mobile accessories in Khammam. Everything available under one roof!</div>
-
-            <div class="review-box" onclick="copyAndRedirect(this, 'High quality mobile repairs with authentic spare parts. Completely satisfied with Cell Planet!')">High quality mobile repairs with authentic spare parts. Completely satisfied with Cell Planet!</div>
+        <!-- DIRECT GOOGLE REVIEW LINK -->
+        <div class="premium-card" style="text-align: center;">
+            <h3 style="color: var(--text-dark); font-size: 16px; margin-bottom: 8px;">Prefer to write your own?</h3>
+            <p style="font-size: 13px; color: var(--text-muted);">Type your custom feedback directly on Google.</p>
+            <a href="https://search.google.com/local/writereview?placeid=ChIJFxR6ddJZNDoR3SZrd7hOq0c" target="_blank" class="btn-direct-review">⭐ Open Google Review Bar</a>
         </div>
 
-        <!-- FOOTER COPYRIGHT -->
+        <!-- FOOTER -->
         <div class="footer-copyright">
             © 2026 <b>Cell Planet Khammam</b>. All Rights Reserved.<br>
-            Designed & Developed by <b>Syed Zeeshan Ali</b> (📱 7989698613)
+            Protected Portal • Designed by <b>Syed Zeeshan Ali</b>
         </div>
 
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast">✅ Review Copied! Opening Review Bar...</div>
+    <div id="toast" class="toast">✅ Copied! Opening Google Maps...</div>
 
-    <!-- ================================================================= -->
-    <!-- JAVASCRIPT AUTOMATION                                             -->
-    <!-- ================================================================= -->
+    <!-- JAVASCRIPT AUTOMATION & ANTI-COPY -->
     <script>
+        // Disable Keyboard Shortcuts for Inspect Element/Copying
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'c' || e.key === 's' || e.key === 'p' || e.key === 'i' || e.key === 'j')) {
+                e.preventDefault();
+            }
+            if (e.key === 'F12') { e.preventDefault(); }
+        });
+
         const GOOGLE_REVIEW_LINK = "https://search.google.com/local/writereview?placeid=ChIJFxR6ddJZNDoR3SZrd7hOq0c";
 
-        function triggerFlash(element) {
-            element.classList.add('flash-effect');
-            setTimeout(() => {
-                element.classList.remove('flash-effect');
-            }, 400);
+        // Array of 50+ Premium Reviews
+        const reviewsArray = [
+            "Best mobile shop in Khammam! Got my smartphone screen replaced quickly and working flawlessly.",
+            "Cell Planet offers honest pricing and top-notch customer service in Khammam. Highly recommended!",
+            "Huge variety of premium mobile covers, back cases, and tempered glass. The best in town.",
+            "Fast and super reliable mobile repair service. My display issue was fixed in under an hour!",
+            "Trusted store for original smartphone accessories, fast chargers, and wireless neckbands.",
+            "Got an amazing exchange deal on my old phone at Cell Planet. Smooth and transparent service.",
+            "Extremely professional technicians. They solved my phone camera glass problem perfectly!",
+            "Genuine gadgets with official warranty support. Extremely satisfied with my purchase.",
+            "Quick turnaround time for repairs and very welcoming staff in Khammam. Will definitely visit again!",
+            "Got my battery replaced at a very affordable price. My battery backup is fantastic now.",
+            "Awesome collection of smartwatches, Bluetooth earbuds, and stylish phone cases.",
+            "Clear pricing with zero hidden charges. Best mobile care hub in Khammam!",
+            "They helped me transfer all my data to my new phone seamlessly. Exceptional support!",
+            "Quick diagnosis and super clean repair work by the expert team at Cell Planet.",
+            "Best discounts on brand new smartphones and premium accessories in Khammam.",
+            "Very polite staff and expert technicians. They explain every technical detail clearly.",
+            "Top quality original UV screen guards and camera lens protectors available here.",
+            "Saved my water-damaged smartphone when other repair centers said it was impossible!",
+            "Clean shop setup, quick service, and original products. 10/10 recommendation!",
+            "The best experience buying mobile accessories in Khammam. Everything under one roof!",
+            "High quality mobile repairs with authentic spare parts. Completely satisfied!",
+            "I always buy my phone cases here. The quality and durability are unmatched in Khammam.",
+            "Fantastic customer care! They guided me perfectly to choose the right phone for my budget.",
+            "My iPhone screen was shattered. Cell Planet fixed it to look brand new in 45 minutes.",
+            "Best place for genuine AirPods and Bluetooth speakers. Prices are very reasonable.",
+            "Excellent exchange value provided for my old device. Highly trust this shop.",
+            "They apply screen protectors with zero bubbles! Such precision and care.",
+            "From software updates to hardware fixes, this is the most reliable mobile shop.",
+            "Purchased a fast charger and it works perfectly. 100% genuine products.",
+            "The store atmosphere is premium and the staff treats customers with great respect.",
+            "Fixed my charging port issue instantly. Very knowledgeable repair engineers.",
+            "I recommend Cell Planet to all my friends. They never disappoint with their service.",
+            "Great deals on latest smartphones. Much better pricing than online stores!",
+            "If you need mobile repair in Khammam, don't look anywhere else. This is the place.",
+            "Beautiful customized skins and covers available. My phone looks amazing now.",
+            "Transparent billing and they show you exactly what part was replaced. Very honest.",
+            "Purchased a second-hand phone in mint condition. Works like a charm!",
+            "The owner is very friendly and ensures every customer leaves happy.",
+            "My phone was overheating, and their tech team resolved the software bug perfectly.",
+            "Best place to buy branded tempered glasses that actually protect your screen.",
+            "They handled my premium flagship phone with absolute care during the battery swap.",
+            "Lightning-fast service. Dropped my phone off and picked it up fixed the same evening.",
+            "Wide range of Type-C accessories, cables, and power banks. Very convenient.",
+            "I love the honest advice they give. They don't just try to sell you expensive things.",
+            "My phone's speaker was muffled. They cleaned and restored it for a very minimal cost.",
+            "Such a premium shopping experience right here in Khammam. Excellent store layout.",
+            "Bought a gaming phone from here and they even helped me set up the optimization.",
+            "Best after-sales support! I had a minor query a week later and they helped immediately.",
+            "They have accessories for almost every phone model, even the older ones.",
+            "Five stars for the rapid repair, polite staff, and perfect finishing. Thank you Cell Planet!"
+        ];
+
+        let currentReviewText = "";
+
+        // Select a random review on load
+        function shuffleReview() {
+            const randomIndex = Math.floor(Math.random() * reviewsArray.length);
+            currentReviewText = reviewsArray[randomIndex];
+            document.getElementById("dynamicReviewBox").innerText = currentReviewText;
         }
 
-        function showToast(message) {
+        // Run on page load
+        window.onload = shuffleReview;
+
+        function showToast() {
             const toast = document.getElementById('toast');
-            if (message) toast.innerText = message;
             toast.className = "toast show";
             setTimeout(() => {
                 toast.className = toast.className.replace("show", "");
             }, 2500);
         }
 
-        function copyAndRedirect(element, text) {
-            triggerFlash(element);
+        function copyDynamicReview() {
+            const box = document.getElementById("dynamicReviewBox");
+            
+            // Flash animation
+            box.classList.remove('flash-effect');
+            void box.offsetWidth; // trigger reflow
+            box.classList.add('flash-effect');
             
             if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast("✅ Review Copied! Opening Review Bar...");
-                    setTimeout(() => {
-                        window.open(GOOGLE_REVIEW_LINK, '_blank');
-                    }, 250);
+                navigator.clipboard.writeText(currentReviewText).then(() => {
+                    executeRedirect();
                 }).catch(() => {
-                    fallbackCopy(text);
+                    fallbackCopy(currentReviewText);
                 });
             } else {
-                fallbackCopy(text);
+                fallbackCopy(currentReviewText);
             }
+        }
+
+        function executeRedirect() {
+            showToast();
+            setTimeout(() => {
+                window.open(GOOGLE_REVIEW_LINK, '_blank');
+                // Shuffle to a new review for the next user interaction when they return
+                setTimeout(shuffleReview, 1000); 
+            }, 300);
         }
 
         function fallbackCopy(text) {
@@ -484,17 +551,13 @@
             textArea.select();
             try {
                 document.execCommand('copy');
-                showToast("✅ Review Copied! Opening Review Bar...");
+                executeRedirect();
             } catch (err) {
-                showToast("Opening Google Review Bar...");
+                // If copy fails, still redirect
+                executeRedirect();
             }
             document.body.removeChild(textArea);
-            setTimeout(() => {
-                window.open(GOOGLE_REVIEW_LINK, '_blank');
-            }, 250);
         }
     </script>
 </body>
 </html>
-
-```
