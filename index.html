@@ -18,24 +18,21 @@
     <!-- ================================================================= -->
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap');
 
-        /* High-End Glassmorphism Variables */
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-highlight: rgba(255, 255, 255, 0.15);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            
+            --bg-dark: #09090b;
+            --box-bg: rgba(25, 25, 28, 0.6);
+            --box-border: rgba(255, 255, 255, 0.08);
             --text-main: #ffffff;
-            --text-muted: #a0aab8;
-            --accent-glow: #4f46e5;
-            
-            --font-family: 'Outfit', sans-serif;
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --text-dim: #8a8a93;
+            --accent: #e2e8f0;
+            --glow: rgba(255, 255, 255, 0.15);
+            --font-main: 'Space Grotesk', sans-serif;
+            --radius-lg: 32px;
+            --radius-md: 20px;
         }
 
-        /* Anti-Copy & Reset */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -47,558 +44,366 @@
             -webkit-touch-callout: none;
         }
 
-        /* Ambient Animated Background */
         body {
-            background-color: #050505;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
             color: var(--text-main);
-            font-family: var(--font-family);
-            padding-bottom: 60px;
+            font-family: var(--font-main);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Bento Grid Layout */
+        .bento-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 16px;
+            width: 100%;
+            max-width: 900px;
+            margin: 20px auto 60px;
+        }
+
+        /* Cubiflow Inspired Box Design */
+        .bento-box {
+            background: var(--box-bg);
+            border: 1px solid var(--box-border);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            flex-direction: column;
+            animation: bentoEntrance 0.8s cubic-bezier(0.25, 1, 0.5, 1) backwards;
+        }
+
+        .bento-box:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        @keyframes bentoEntrance {
+            0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Grid Placements */
+        .box-header { grid-column: span 4; text-align: center; justify-content: center; align-items: center; padding: 40px 20px; }
+        .box-showcase-1 { grid-column: span 2; grid-row: span 2; padding: 0; }
+        .box-showcase-2 { grid-column: span 2; padding: 0; }
+        .box-review { grid-column: span 4; }
+        .box-actions { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 20px; background: transparent; border: none; backdrop-filter: none; box-shadow: none; }
+        .box-actions:hover { transform: none; box-shadow: none; }
+        .box-guide { grid-column: span 2; justify-content: center; }
+        .box-dev { grid-column: span 4; text-align: center; cursor: pointer; background: linear-gradient(135deg, #111 0%, #1a1a1a 100%); }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .bento-container { grid-template-columns: 1fr; }
+            .box-header, .box-showcase-1, .box-showcase-2, .box-review, .box-actions, .box-guide, .box-dev { grid-column: span 1; }
+            .box-showcase-1 { grid-row: span 1; height: 250px; }
+            .box-showcase-2 { height: 200px; }
+        }
+
+        /* Header Styling */
+        .brand-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            border: 1px solid var(--box-border);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.5s ease;
+        }
+        .box-header:hover .brand-logo { transform: rotateY(180deg); }
+        
+        .brand-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .brand-subtitle { font-size: 15px; color: var(--text-dim); font-weight: 400; }
+
+        /* Showcase Images & 3D Effects */
+        .showcase-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+        }
+        
+        .showcase-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: grayscale(20%) contrast(120%);
+        }
+        
+        .bento-box:hover .showcase-container img {
+            transform: scale(1.1);
+            opacity: 1;
+            filter: grayscale(0%) contrast(100%);
+        }
+
+        .showcase-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        /* Actions Grid (Buttons) */
+        .btn-action {
+            background: var(--box-bg);
+            border: 1px solid var(--box-border);
+            border-radius: var(--radius-md);
+            color: #fff;
+            text-decoration: none;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden;
-            position: relative;
-            perspective: 1000px;
-        }
-
-        /* Glowing Orbs */
-        body::before, body::after {
-            content: '';
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: -1;
-            animation: float 20s infinite alternate;
-        }
-        body::before {
-            background: rgba(79, 70, 229, 0.15);
-            top: -200px;
-            left: -200px;
-        }
-        body::after {
-            background: rgba(236, 72, 153, 0.15);
-            bottom: -200px;
-            right: -200px;
-            animation-delay: -10s;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 100px) scale(1.2); }
-        }
-
-        @keyframes revealUp {
-            0% { opacity: 0; transform: translateY(40px) scale(0.95) rotateX(10deg); }
-            100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); }
-        }
-
-        /* Minimalist Developer Bar */
-        .dev-top-bar {
-            width: 100%;
-            background: rgba(10, 10, 10, 0.5);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 12px 20px;
-            font-size: 11px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 12px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .dev-top-bar img {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 1px solid var(--glass-highlight);
-            object-fit: cover;
-        }
-
-        .dev-top-bar a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        .dev-top-bar a:hover { color: #ec4899; text-shadow: 0 0 10px rgba(236, 72, 153, 0.5); }
-
-        .container {
-            width: 100%;
-            max-width: 540px;
-            padding: 30px 20px;
-            animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            transform-style: preserve-3d;
-        }
-
-        /* 3D Glass Cards */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--glass-border);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            border-left: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-            padding: 35px 25px;
-            margin-bottom: 24px;
-            box-shadow: var(--glass-shadow);
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s;
-            position: relative;
-            overflow: hidden;
-            transform: translateZ(0);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px) translateZ(20px) rotateX(2deg);
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.05) inset;
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Brand Showcase (3D Sliding Marquee) */
-        .brand-marquee-wrapper {
-            width: 100%;
-            max-width: 540px;
-            margin: 0 auto 20px auto;
-            padding: 20px 0;
-            overflow: hidden;
-            position: relative;
-            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-        }
-
-        .brand-marquee {
-            display: flex;
-            gap: 20px;
-            width: max-content;
-            animation: slide3D 20s linear infinite;
-            transform-style: preserve-3d;
-        }
-
-        @keyframes slide3D {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .brand-pill {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
+            padding: 20px 10px;
             gap: 10px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
-            color: #fff;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: var(--transition);
-        }
-
-        .brand-pill:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateZ(15px) scale(1.05);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .brand-icon {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
-        }
-
-        /* Brand Header */
-        .brand-header {
-            text-align: center;
-        }
-
-        .brand-logo {
-            width: 110px;
-            height: 110px;
-            border-radius: 30px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.1) inset;
-            margin-bottom: 20px;
-            object-fit: cover;
-            background-color: transparent;
-            transition: var(--transition);
-            transform: translateZ(30px);
-        }
-        
-        .glass-card:hover .brand-logo {
-            transform: translateZ(40px) scale(1.1) rotate(5deg);
-        }
-
-        .brand-title {
-            color: var(--text-main);
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #ffffff 0%, #a0aab8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transform: translateZ(20px);
-        }
-
-        .brand-subtitle {
-            font-size: 15px;
-            color: var(--text-muted);
-            font-weight: 400;
-            transform: translateZ(10px);
-        }
-
-        /* Glass Action Buttons */
-        .action-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 30px;
-            transform: translateZ(15px);
-        }
-
-        .btn-action {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 16px 12px;
-            border-radius: 16px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
+            transition: all 0.3s;
             backdrop-filter: blur(10px);
         }
+        .btn-action span { font-size: 24px; }
+        .btn-action:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); }
+        .btn-call { grid-column: span 2; background: #fff; color: #000; flex-direction: row; font-size: 16px; padding: 15px; }
+        .btn-call:hover { background: #e2e2e2; }
 
-        .btn-action:hover { 
-            background: rgba(255, 255, 255, 0.15); 
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        /* Dynamic Review Gen */
+        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .review-header h3 { font-size: 18px; font-weight: 600; }
+        
+        .review-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: var(--radius-md);
+            font-size: 18px;
+            line-height: 1.6;
+            cursor: pointer;
+            transition: all 0.4s;
+            position: relative;
         }
-        .btn-action:active { transform: scale(0.95); }
-
-        .btn-call { 
-            grid-column: span 2; 
-            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); 
-            color: #000; 
-            border: none;
-            box-shadow: 0 10px 20px rgba(255,255,255,0.15);
-        }
-        .btn-call:hover { 
-            background: #fff;
-            box-shadow: 0 15px 30px rgba(255,255,255,0.3); 
+        .review-box:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 0 30px rgba(255,255,255,0.05);
         }
         
-        .btn-whatsapp { color: #4ade80; border-color: rgba(74, 222, 128, 0.3); }
-        .btn-whatsapp:hover { background: rgba(74, 222, 128, 0.15); }
-        .btn-instagram { color: #f472b6; border-color: rgba(244, 114, 182, 0.3); }
-        .btn-instagram:hover { background: rgba(244, 114, 182, 0.15); }
-        .btn-maps { color: #f87171; border-color: rgba(248, 113, 113, 0.3); }
-        .btn-maps:hover { background: rgba(248, 113, 113, 0.15); }
-
-        /* 3-Step Glass Guide */
-        .steps-container {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        .steps-title {
-            color: var(--text-main);
-            font-size: 13px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.9;
-        }
-
-        .step-item {
-            font-size: 15px;
-            color: var(--text-muted);
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .step-item b { color: var(--text-main); }
-
-        .step-circle {
-            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 800;
-            flex-shrink: 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px);
-        }
-
-        /* Dynamic Review Box */
-        .dynamic-review-container {
-            text-align: center;
-        }
-
-        .dynamic-review-container h3 {
-            color: #fff;
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: 800;
-            transform: translateZ(10px);
-        }
-
-        .review-box {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px dashed rgba(255, 255, 255, 0.3);
-            padding: 30px 25px;
-            border-radius: 20px;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #fff;
-            font-weight: 400;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            margin-bottom: 15px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        .review-box:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: #fff;
-            transform: scale(1.03) translateZ(20px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.1), inset 0 0 0 transparent;
-        }
-
         .review-box::after {
-            content: "Tap anywhere inside to Copy & Rate ➔";
+            content: "TAP TO COPY & RATE";
             display: block;
-            font-size: 11px;
-            color: #fff;
             margin-top: 20px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(255,255,255,0.15);
-            padding: 8px 20px;
-            border-radius: 30px;
-            display: inline-block;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #aaa;
+            transition: color 0.3s;
         }
+        .review-box:hover::after { color: #fff; }
 
         .refresh-btn {
             background: none;
             border: none;
-            color: var(--text-muted);
-            font-size: 14px;
+            color: var(--text-dim);
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
+            font-family: inherit;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .refresh-btn:hover { color: #fff; }
+
+        /* Guide Steps */
+        .steps-title { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); margin-bottom: 20px; font-weight: 700; }
+        .step-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 15px; }
+        .step-item:last-child { margin-bottom: 0; }
+        .step-circle {
+            width: 30px; height: 30px; 
+            border-radius: 50%; 
+            border: 1px solid rgba(255,255,255,0.2); 
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700; background: rgba(255,255,255,0.05);
+        }
+
+        /* Developer Footer Section */
+        .dev-link {
+            text-decoration: none;
+            color: var(--text-main);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             width: 100%;
-            padding: 12px;
-            transition: var(--transition);
+            height: 100%;
         }
-        .refresh-btn:hover { color: #fff; transform: rotate(1deg) scale(1.02); }
+        .dev-badge {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-dim);
+        }
+        .dev-name {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+        }
+        .dev-link:hover .dev-name { transform: scale(1.05); }
 
         /* Direct Review Button */
-        .btn-direct-review {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 16px;
-            font-weight: 800;
-            text-align: center;
-            border-radius: 16px;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
+        .btn-direct {
+            display: block; width: 100%; padding: 16px; margin-top: 15px;
+            text-align: center; text-decoration: none; color: #fff;
+            border: 1px solid var(--box-border); border-radius: var(--radius-md);
+            font-weight: 600; font-size: 14px; letter-spacing: 1px;
+            transition: all 0.3s;
         }
-        .btn-direct-review:hover {
-            background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.1));
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px) translateZ(15px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-        }
-        .btn-direct-review:active { transform: scale(0.96); }
+        .btn-direct:hover { background: #fff; color: #000; }
 
-        /* Flash Animation */
-        @keyframes flashSuccess {
-            0% { transform: scale(1); background: rgba(0,0,0,0.3); }
-            50% { transform: scale(1.05); background: rgba(255,255,255,0.2); border-color: #fff; box-shadow: 0 0 40px rgba(255,255,255,0.3); }
-            100% { transform: scale(1); background: rgba(0,0,0,0.3); }
+        /* Toast & Animations */
+        @keyframes flashEffect {
+            0% { transform: scale(1); background: rgba(0,0,0,0.4); }
+            50% { transform: scale(1.02); background: rgba(255,255,255,0.1); border-color: #fff; }
+            100% { transform: scale(1); background: rgba(0,0,0,0.4); }
         }
-        .flash-effect { animation: flashSuccess 0.6s cubic-bezier(0.25, 1, 0.2, 1); }
+        .flash-active { animation: flashEffect 0.5s ease-out; }
 
-        /* Glass Toast */
         .toast {
-            visibility: hidden;
-            min-width: 280px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            text-align: center;
-            border-radius: 30px;
-            padding: 16px 24px;
-            position: fixed;
-            z-index: 9999;
-            left: 50%;
-            bottom: 40px;
-            transform: translateX(-50%);
-            font-size: 15px;
-            font-weight: 800;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            visibility: hidden; min-width: 280px;
+            background: #fff; color: #000; text-align: center;
+            border-radius: 50px; padding: 16px 24px;
+            position: fixed; z-index: 9999; left: 50%; bottom: 30px;
+            transform: translateX(-50%) translateY(20px); opacity: 0;
+            font-size: 14px; font-weight: 700; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
+        .toast.show { visibility: visible; transform: translateX(-50%) translateY(0); opacity: 1; }
 
-        .toast.show {
-            visibility: visible;
-            animation: toastFadeIn 0.5s cubic-bezier(0.25, 1, 0.2, 1), toastFadeOut 0.5s 2.2s cubic-bezier(0.25, 1, 0.2, 1);
-        }
-
-        @keyframes toastFadeIn { from { bottom: 0; opacity: 0; transform: translate(-50%, 20px) scale(0.9); } to { bottom: 40px; opacity: 1; transform: translate(-50%, 0) scale(1); } }
-        @keyframes toastFadeOut { from { bottom: 40px; opacity: 1; transform: translate(-50%, 0) scale(1); } to { bottom: 0; opacity: 0; transform: translate(-50%, 20px) scale(0.9); } }
-
-        /* Footer */
-        .footer-copyright {
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 20px;
-            padding: 24px 10px;
-            line-height: 1.8;
-            width: 100%;
-            opacity: 0.8;
-        }
-        .footer-copyright b { color: #fff; font-weight: 800; }
+        /* Animation Delays for Grid */
+        .box-header { animation-delay: 0.1s; }
+        .box-showcase-1 { animation-delay: 0.2s; }
+        .box-showcase-2 { animation-delay: 0.3s; }
+        .box-actions { animation-delay: 0.4s; }
+        .box-guide { animation-delay: 0.5s; }
+        .box-review { animation-delay: 0.6s; }
+        .box-dev { animation-delay: 0.7s; }
     </style>
 </head>
-<body oncontextmenu="return false;"> <!-- Disable Right Click -->
+<body oncontextmenu="return false;">
 
-    <!-- DEVELOPER TOP BAR -->
-    <div class="dev-top-bar">
-       <img src="dev-logo.png.png" alt="Syed Zeeshaan Ali" onerror="this.src='https://ui-avatars.com/api/?name=SZ&background=c5a059&color=fff'">
-       <span><b>Syed Zeeshaan Ali</b></span> | 
-       <a href="tel:7989698613">Call</a> | 
-       <a href="https://www.instagram.com/syedzeeshaanali07/" target="_blank">Instagram</a>
-    </div>
+    <div class="bento-container">
 
-    <!-- 3D MOBILE BRANDS SHOWCASE (Infinite Marquee) -->
-    <div class="brand-marquee-wrapper">
-        <div class="brand-marquee">
-            <!-- First Set -->
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" class="brand-icon" alt="Apple" onerror="this.style.display='none'"> Apple</div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" class="brand-icon" style="width:40px;" alt="Samsung" onerror="this.style.display='none'"></div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/OnePlus_logo.svg" class="brand-icon" style="width:50px;" alt="OnePlus" onerror="this.style.display='none'"></div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Vivo_logo_2019.svg" class="brand-icon" style="width:40px;" alt="Vivo" onerror="this.style.display='none'"></div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Oppo_Logo_2019.svg" class="brand-icon" style="width:40px;" alt="Oppo" onerror="this.style.display='none'"></div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" class="brand-icon" alt="Xiaomi" onerror="this.style.display='none'"> Xiaomi</div>
-            <div class="brand-pill">Realme</div>
-            <!-- Duplicated for seamless scrolling -->
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" class="brand-icon" alt="Apple" onerror="this.style.display='none'"> Apple</div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" class="brand-icon" style="width:40px;" alt="Samsung" onerror="this.style.display='none'"></div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/OnePlus_logo.svg" class="brand-icon" style="width:50px;" alt="OnePlus" onerror="this.style.display='none'"></div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Vivo_logo_2019.svg" class="brand-icon" style="width:40px;" alt="Vivo" onerror="this.style.display='none'"></div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Oppo_Logo_2019.svg" class="brand-icon" style="width:40px;" alt="Oppo" onerror="this.style.display='none'"></div>
-            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" class="brand-icon" alt="Xiaomi" onerror="this.style.display='none'"> Xiaomi</div>
-            <div class="brand-pill">Realme</div>
-        </div>
-    </div>
-
-    <div class="container">
-
-        <!-- BRANDING & CONTACTS -->
-        <div class="glass-card brand-header">
-            <img src="cell-logo.png.jfif" alt="Cell Planet Khammam" class="brand-logo" onerror="this.src='https://via.placeholder.com/110/333333/ffffff?text=CP'">
+        <!-- Header Block -->
+        <header class="bento-box box-header">
+            <img src="cell-logo.png.jfif" alt="Cell Planet" class="brand-logo" onerror="this.src='https://ui-avatars.com/api/?name=CP&background=111&color=fff&size=120'">
             <h1 class="brand-title">CELL PLANET</h1>
-            <p class="brand-subtitle">Smartphones, Premium Accessories & Rapid Repairs</p>
+            <p class="brand-subtitle">Premium Smartphones • Accessories • Rapid Repairs</p>
+        </header>
 
-            <div class="action-grid">
-                <a href="tel:9550677795" class="btn-action btn-call">📞 Call Cell Planet</a>
-                <a href="https://wa.me/919550677795" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp Us</a>
-                <a href="https://www.instagram.com/cellplanetkhammam?utm_source=qr&igsi=dzRuNjBtMGt5NTY0" target="_blank" class="btn-action btn-instagram">📸 Instagram</a>
-                <a href="https://www.google.com/maps?cid=5164307951894865629" target="_blank" class="btn-action btn-maps">📍 Shop Location</a>
+        <!-- Product Showcase 1: Premium Smartphones -->
+        <div class="bento-box box-showcase-1">
+            <div class="showcase-container">
+                <!-- Using high quality Unsplash tech image for the showcase -->
+                <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&q=80&w=800" alt="Latest Smartphones">
+                <div class="showcase-label">iPhone • Samsung • Vivo • Realme</div>
             </div>
         </div>
 
-        <!-- 3-STEP GUIDE -->
-        <div class="steps-container glass-card" style="padding: 25px;">
-            <div class="steps-title">Leave a 5-Star Review</div>
-            <div class="step-item"><div class="step-circle">1</div> <b>Tap</b> the review box below to copy.</div>
-            <div class="step-item"><div class="step-circle">2</div> <b>Paste</b> it into Google Maps.</div>
-            <div class="step-item"><div class="step-circle">3</div> <b>Rate</b> us 5 Stars ⭐⭐⭐⭐⭐</div>
+        <!-- Product Showcase 2: Smart TVs & Audio -->
+        <div class="bento-box box-showcase-2">
+            <div class="showcase-container">
+                <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&q=80&w=600" alt="Gadgets & Audio">
+                <div class="showcase-label">Smart TVs & Soundbars</div>
+            </div>
         </div>
 
-        <!-- DYNAMIC 50+ REVIEW GENERATOR -->
-        <div class="glass-card dynamic-review-container">
-            <h3>📝 Auto-Generated Review</h3>
+        <!-- Action Links -->
+        <div class="bento-box box-actions">
+            <a href="tel:9550677795" class="btn-action btn-call">📞 Call Cell Planet</a>
+            <a href="https://wa.me/919550677795" target="_blank" class="btn-action"><span>💬</span> WhatsApp</a>
+            <a href="https://www.instagram.com/cellplanetkhammam?utm_source=qr&igsi=dzRuNjBtMGt5NTY0" target="_blank" class="btn-action"><span>📸</span> Instagram</a>
+            <a href="https://www.google.com/maps?cid=5164307951894865629" target="_blank" class="btn-action" style="grid-column: span 2;"><span>📍</span> Get Directions</a>
+        </div>
+
+        <!-- Guide Block -->
+        <div class="bento-box box-guide">
+            <div class="steps-title">Leave a Review</div>
+            <div class="step-item"><div class="step-circle">1</div> Copy auto-generated text</div>
+            <div class="step-item"><div class="step-circle">2</div> Open Google Maps</div>
+            <div class="step-item"><div class="step-circle">3</div> Rate us 5 Stars ⭐⭐⭐⭐⭐</div>
             
-            <!-- This box holds the dynamic text -->
+            <a href="https://search.google.com/local/writereview?placeid=ChIJFxR6ddJZNDoR3SZrd7hOq0c" target="_blank" class="btn-direct">Manual Review Entry</a>
+        </div>
+
+        <!-- AI Review Generator Block -->
+        <div class="bento-box box-review">
+            <div class="review-header">
+                <h3>AI Generated Feedback</h3>
+                <button class="refresh-btn" onclick="shuffleReview()">🔄 Shuffle</button>
+            </div>
+            
             <div class="review-box" id="dynamicReviewBox" onclick="copyDynamicReview()">
-                Loading a great review for you...
+                Loading a premium review...
             </div>
-            
-            <button class="refresh-btn" onclick="shuffleReview()">
-                🔄 Tap here to see a different review
-            </button>
         </div>
 
-        <!-- DIRECT GOOGLE REVIEW LINK -->
-        <div class="glass-card" style="text-align: center;">
-            <h3 style="color: #fff; font-size: 18px; margin-bottom: 8px; font-weight: 800;">Prefer to write your own?</h3>
-            <p style="font-size: 14px; color: var(--text-muted);">Type your custom feedback directly on Google.</p>
-            <a href="https://search.google.com/local/writereview?placeid=ChIJFxR6ddJZNDoR3SZrd7hOq0c" target="_blank" class="btn-direct-review">⭐ Open Google Review Bar</a>
-        </div>
-
-        <!-- FOOTER -->
-        <div class="footer-copyright">
-            © 2026 <b>Cell Planet Khammam</b>. All Rights Reserved.<br>
-            Protected Portal • Designed by <b>Syed Zeeshan Ali</b>
-        </div>
+        <!-- Developer Footer Block (Bold & Clickable as Requested) -->
+        <footer class="bento-box box-dev">
+            <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/" target="_blank" class="dev-link">
+                <span class="dev-badge">Designed & Engineered By</span>
+                <span class="dev-name">SYED ZEESHAAN ALI</span>
+            </a>
+        </footer>
 
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast">✅ Copied! Opening Google Maps...</div>
+    <div id="toast" class="toast">✅ Copied! Opening Maps...</div>
 
     <!-- JAVASCRIPT AUTOMATION & ANTI-COPY -->
     <script>
-        // Disable Keyboard Shortcuts for Inspect Element/Copying
+        // Disable Keyboard Shortcuts
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && (e.key === 'u' || e.key === 'c' || e.key === 's' || e.key === 'p' || e.key === 'i' || e.key === 'j')) {
                 e.preventDefault();
@@ -608,7 +413,6 @@
 
         const GOOGLE_REVIEW_LINK = "https://search.google.com/local/writereview?placeid=ChIJFxR6ddJZNDoR3SZrd7hOq0c";
 
-        // Array of 50+ Premium Reviews
         const reviewsArray = [
             "Best mobile shop in Khammam! Got my smartphone screen replaced quickly and working flawlessly.",
             "Cell Planet offers honest pricing and top-notch customer service in Khammam. Highly recommended!",
@@ -664,31 +468,28 @@
 
         let currentReviewText = "";
 
-        // Select a random review on load
         function shuffleReview() {
             const randomIndex = Math.floor(Math.random() * reviewsArray.length);
             currentReviewText = reviewsArray[randomIndex];
             document.getElementById("dynamicReviewBox").innerText = currentReviewText;
         }
 
-        // Run on page load
         window.onload = shuffleReview;
 
         function showToast() {
             const toast = document.getElementById('toast');
-            toast.className = "toast show";
+            toast.classList.add('show');
             setTimeout(() => {
-                toast.className = toast.className.replace("show", "");
+                toast.classList.remove('show');
             }, 2500);
         }
 
         function copyDynamicReview() {
             const box = document.getElementById("dynamicReviewBox");
             
-            // Flash animation
-            box.classList.remove('flash-effect');
-            void box.offsetWidth; // trigger reflow
-            box.classList.add('flash-effect');
+            box.classList.remove('flash-active');
+            void box.offsetWidth; 
+            box.classList.add('flash-active');
             
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(currentReviewText).then(() => {
@@ -705,9 +506,8 @@
             showToast();
             setTimeout(() => {
                 window.open(GOOGLE_REVIEW_LINK, '_blank');
-                // Shuffle to a new review for the next user interaction when they return
                 setTimeout(shuffleReview, 1000); 
-            }, 300);
+            }, 400);
         }
 
         function fallbackCopy(text) {
@@ -722,7 +522,6 @@
                 document.execCommand('copy');
                 executeRedirect();
             } catch (err) {
-                // If copy fails, still redirect
                 executeRedirect();
             }
             document.body.removeChild(textArea);
