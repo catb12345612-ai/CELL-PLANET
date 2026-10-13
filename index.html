@@ -21,13 +21,15 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap');
 
         :root {
-            /* Light Theme Variables */
-            --bg-light: #f4f4f7;
-            --box-bg: rgba(255, 255, 255, 0.85);
-            --box-border: rgba(0, 0, 0, 0.08);
-            --text-main: #111111;
+            /* Premium White & Gold Variables */
+            --bg-light: #fcfcfc;
+            --box-bg: #ffffff;
+            --gold-main: #c5a059;
+            --gold-light: rgba(197, 160, 89, 0.15);
+            --gold-border: rgba(197, 160, 89, 0.4);
+            --gold-gradient: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+            --text-main: #1a1a1a;
             --text-dim: #666666;
-            --accent: #e2e8f0;
             --font-main: 'Space Grotesk', sans-serif;
             --radius-lg: 32px;
             --radius-md: 20px;
@@ -47,8 +49,8 @@
         body {
             background-color: var(--bg-light);
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
+                radial-gradient(circle at 100% 0%, var(--gold-light) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, var(--gold-light) 0%, transparent 40%);
             color: var(--text-main);
             font-family: var(--font-main);
             min-height: 100vh;
@@ -69,26 +71,24 @@
             margin: 20px auto 60px;
         }
 
-        /* Cubiflow Inspired Box Design - Light Edition */
+        /* Luxury Box Design */
         .bento-box {
             background: var(--box-bg);
-            border: 1px solid var(--box-border);
+            border: 1px solid var(--gold-border);
             border-radius: var(--radius-lg);
             padding: 30px;
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
             flex-direction: column;
             animation: bentoEntrance 0.8s cubic-bezier(0.25, 1, 0.5, 1) backwards;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.05);
         }
 
         .bento-box:hover {
-            border-color: rgba(0, 0, 0, 0.15);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(0, 0, 0, 0.02);
+            border-color: var(--gold-main);
+            box-shadow: 0 20px 40px rgba(197, 160, 89, 0.15);
             transform: translateY(-4px) scale(1.01);
         }
 
@@ -99,109 +99,114 @@
 
         /* Grid Placements */
         .box-header { grid-column: span 4; text-align: center; justify-content: center; align-items: center; padding: 40px 20px; }
-        .box-showcase-1 { grid-column: span 2; grid-row: span 2; padding: 0; }
-        .box-showcase-2 { grid-column: span 2; padding: 0; }
+        .box-showcase-1 { grid-column: span 2; grid-row: span 2; padding: 0; border: none; }
+        .box-showcase-2 { grid-column: span 2; padding: 0; border: none; }
         .box-review { grid-column: span 4; }
-        .box-actions { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 20px; background: transparent; border: none; backdrop-filter: none; box-shadow: none; }
-        .box-actions:hover { transform: none; box-shadow: none; }
+        .box-actions { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 20px; background: transparent; border: none; box-shadow: none; }
+        .box-actions:hover { transform: none; box-shadow: none; border: none; }
         .box-guide { grid-column: span 2; justify-content: center; }
-        .box-dev { grid-column: span 4; text-align: center; cursor: pointer; background: linear-gradient(135deg, #ffffff 0%, #f0f0f5 100%); }
+        .box-dev { grid-column: span 4; text-align: center; cursor: pointer; background: var(--box-bg); }
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .bento-container { grid-template-columns: 1fr; }
             .box-header, .box-showcase-1, .box-showcase-2, .box-review, .box-actions, .box-guide, .box-dev { grid-column: span 1; }
-            .box-showcase-1 { grid-row: span 1; height: 280px; }
-            .box-showcase-2 { height: 220px; }
+            .box-showcase-1 { grid-row: span 1; height: 300px; }
+            .box-showcase-2 { height: 250px; }
         }
 
         /* Header Styling */
         .brand-logo {
-            width: 90px;
-            height: 90px;
-            border-radius: 24px;
-            border: 1px solid var(--box-border);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-main);
             margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px var(--gold-light);
             transition: transform 0.5s ease;
             background-color: #fff;
             object-fit: cover;
+            padding: 4px;
         }
         .box-header:hover .brand-logo { transform: rotateY(180deg); }
         
         .brand-title {
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 700;
             letter-spacing: -1px;
-            background: linear-gradient(to right, #111, #666);
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
         }
-        .brand-subtitle { font-size: 15px; color: var(--text-dim); font-weight: 600; }
+        .brand-subtitle { font-size: 15px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Showcase Images & SLIDING 3D Effects */
+        /* Infinite Seamless 3D Image Slider */
         .showcase-container {
             width: 100%;
             height: 100%;
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
             overflow: hidden;
-            background: radial-gradient(circle at center, rgba(0,0,0,0.02) 0%, transparent 70%);
+            background: #000; /* Dark backdrop to make images pop */
+            border-radius: var(--radius-lg);
         }
 
         .slider-track {
             display: flex;
-            width: 300%;
+            width: max-content;
             height: 100%;
-            animation: slideAnimation 15s infinite ease-in-out;
+            animation: scrollSeamless 25s linear infinite;
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused; /* Pause on hover for viewing */
         }
 
         .slider-track img {
-            width: 33.333%;
+            width: 250px; /* Fixed width for uniform sliding */
             height: 100%;
             object-fit: cover;
-            opacity: 0.95;
-            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            opacity: 0.85;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s;
+            border-right: 2px solid rgba(255,255,255,0.1);
         }
 
-        .bento-box:hover .slider-track img {
-            transform: scale(1.08);
+        .slider-track img:hover {
+            transform: scale(1.1);
             opacity: 1;
+            z-index: 10;
         }
 
-        /* Sliding Keyframes */
-        @keyframes slideAnimation {
-            0%, 25% { transform: translateX(0); }
-            33%, 58% { transform: translateX(-33.333%); }
-            66%, 91% { transform: translateX(-66.666%); }
-            100% { transform: translateX(0); }
+        @keyframes scrollSeamless {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Scrolls exactly halfway (1 full set) */
         }
 
         .showcase-label {
             position: absolute;
             bottom: 20px;
             left: 20px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 50px;
-            border: 1px solid rgba(0,0,0,0.1);
+            border: 1px solid var(--gold-main);
             font-size: 12px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #111;
-            z-index: 2;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: var(--gold-main);
+            z-index: 15;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            pointer-events: none;
         }
 
         /* Actions Grid (Buttons) */
         .btn-action {
-            background: #f0f0f5;
-            border: 1px solid var(--box-border);
+            background: #fff;
+            border: 1px solid var(--gold-border);
             border-radius: var(--radius-md);
             color: var(--text-main);
             text-decoration: none;
@@ -214,19 +219,20 @@
             font-size: 13px;
             font-weight: 700;
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
         .btn-action span { font-size: 24px; }
-        .btn-action:hover { background: #e4e4eb; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .btn-call { grid-column: span 2; background: #111; color: #fff; flex-direction: row; font-size: 16px; padding: 15px; }
-        .btn-call:hover { background: #333; color: #fff; }
+        .btn-action:hover { background: var(--gold-main); color: #fff; transform: translateY(-5px); box-shadow: 0 10px 25px var(--gold-light); }
+        .btn-call { grid-column: span 2; background: var(--gold-gradient); color: #fff; flex-direction: row; font-size: 16px; padding: 15px; border: none; }
+        .btn-call:hover { opacity: 0.9; color: #fff; }
 
         /* Dynamic Review Gen */
         .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .review-header h3 { font-size: 18px; font-weight: 700; }
+        .review-header h3 { font-size: 18px; font-weight: 700; color: var(--gold-main); }
         
         .review-box {
-            background: rgba(0, 0, 0, 0.02);
-            border: 1.5px dashed rgba(0, 0, 0, 0.15);
+            background: #fff;
+            border: 2px dashed var(--gold-border);
             padding: 30px;
             border-radius: var(--radius-md);
             font-size: 18px;
@@ -234,12 +240,13 @@
             cursor: pointer;
             transition: all 0.4s;
             position: relative;
-            color: #333;
+            color: var(--text-main);
         }
         .review-box:hover {
-            border-color: #111;
-            background: rgba(0,0,0,0.04);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-style: solid;
+            border-color: var(--gold-main);
+            background: var(--bg-light);
+            box-shadow: 0 10px 30px var(--gold-light);
         }
         
         .review-box::after {
@@ -249,15 +256,16 @@
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 2px;
-            color: #888;
-            transition: color 0.3s;
+            color: var(--gold-main);
+            transition: opacity 0.3s;
+            opacity: 0.7;
         }
-        .review-box:hover::after { color: #111; }
+        .review-box:hover::after { opacity: 1; }
 
         .refresh-btn {
-            background: rgba(0,0,0,0.05);
-            border: none;
-            color: var(--text-main);
+            background: var(--gold-light);
+            border: 1px solid var(--gold-border);
+            color: var(--gold-main);
             font-size: 12px;
             font-weight: 700;
             cursor: pointer;
@@ -268,18 +276,19 @@
             padding: 8px 16px;
             border-radius: 20px;
         }
-        .refresh-btn:hover { background: rgba(0,0,0,0.1); }
+        .refresh-btn:hover { background: var(--gold-main); color: #fff; }
 
         /* Guide Steps */
-        .steps-title { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); margin-bottom: 20px; font-weight: 700; }
-        .step-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 15px; font-weight: 600; }
+        .steps-title { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-main); margin-bottom: 20px; font-weight: 700; }
+        .step-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 15px; font-weight: 600; color: var(--text-main); }
         .step-item:last-child { margin-bottom: 0; }
         .step-circle {
             width: 32px; height: 32px; 
             border-radius: 50%; 
-            border: 1px solid rgba(0,0,0,0.1); 
+            border: 1px solid var(--gold-main); 
             display: flex; align-items: center; justify-content: center;
-            font-size: 13px; font-weight: 700; background: rgba(0,0,0,0.03);
+            font-size: 13px; font-weight: 700; background: var(--gold-light);
+            color: var(--gold-main);
         }
 
         /* Developer Footer Section */
@@ -296,19 +305,21 @@
         }
         
         .dev-img {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid rgba(0,0,0,0.1);
+            border: 2px solid var(--gold-main);
             margin-bottom: 5px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px var(--gold-light);
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 2px;
+            background: #fff;
         }
 
         .dev-link:hover .dev-img {
             transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.3);
         }
 
         .dev-badge {
@@ -322,7 +333,7 @@
             font-size: 24px;
             font-weight: 700;
             letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #111 0%, #555 100%);
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             transition: transform 0.3s ease;
@@ -332,31 +343,33 @@
         /* Direct Review Button */
         .btn-direct {
             display: block; width: 100%; padding: 16px; margin-top: 15px;
-            text-align: center; text-decoration: none; color: #111;
+            text-align: center; text-decoration: none; color: var(--gold-main);
             background: #fff;
-            border: 1px solid var(--box-border); border-radius: var(--radius-md);
+            border: 1px solid var(--gold-main); border-radius: var(--radius-md);
             font-weight: 700; font-size: 14px; letter-spacing: 1px;
             transition: all 0.3s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            text-transform: uppercase;
         }
-        .btn-direct:hover { background: #111; color: #fff; }
+        .btn-direct:hover { background: var(--gold-main); color: #fff; box-shadow: 0 10px 20px var(--gold-light); }
 
         /* Toast & Animations */
         @keyframes flashEffect {
-            0% { transform: scale(1); background: rgba(0,0,0,0.02); }
-            50% { transform: scale(1.02); background: rgba(0,0,0,0.06); border-color: #111; }
-            100% { transform: scale(1); background: rgba(0,0,0,0.02); }
+            0% { transform: scale(1); background: #fff; }
+            50% { transform: scale(1.02); background: var(--gold-light); border-color: var(--gold-main); }
+            100% { transform: scale(1); background: #fff; }
         }
         .flash-active { animation: flashEffect 0.5s ease-out; }
 
         .toast {
             visibility: hidden; min-width: 280px;
-            background: #111; color: #fff; text-align: center;
+            background: var(--gold-gradient); color: #fff; text-align: center;
             border-radius: 50px; padding: 16px 24px;
             position: fixed; z-index: 9999; left: 50%; bottom: 30px;
             transform: translateX(-50%) translateY(20px); opacity: 0;
-            font-size: 14px; font-weight: 700; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            font-size: 14px; font-weight: 700; box-shadow: 0 20px 40px rgba(197, 160, 89, 0.4);
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         .toast.show { visibility: visible; transform: translateX(-50%) translateY(0); opacity: 1; }
 
@@ -376,38 +389,52 @@
 
         <!-- Header Block -->
         <header class="bento-box box-header">
-            <img src="cell-logo.png.jfif" alt="Cell Planet" class="brand-logo" onerror="this.src='https://ui-avatars.com/api/?name=CP&background=111&color=fff&size=120'">
+            <img src="cell-logo.png.jfif" alt="Cell Planet" class="brand-logo" onerror="this.src='https://ui-avatars.com/api/?name=CP&background=c5a059&color=fff&size=120'">
             <h1 class="brand-title">CELL PLANET</h1>
-            <p class="brand-subtitle">Premium Smartphones • Accessories • Rapid Repairs</p>
+            <p class="brand-subtitle">Premium Smartphones & Accessories</p>
         </header>
 
-        <!-- Product Showcase 1: Premium Smartphones (Animated Slider) -->
+        <!-- Product Showcase 1: Premium Smartphones (Infinite Marquee) -->
         <div class="bento-box box-showcase-1">
             <div class="showcase-container">
                 <div class="slider-track">
-                    <!-- Image 1: iPhones -->
-                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&q=80&w=800" alt="iPhone Models">
-                    <!-- Image 2: Samsung/Android -->
-                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&q=80&w=800" alt="Samsung Galaxy">
-                    <!-- Image 3: Various Premium Phones -->
-                    <img src="https://images.unsplash.com/photo-1533228100845-08145b01de14?auto=format&fit=crop&q=80&w=800" alt="Premium Smartphones">
+                    <!-- SET 1 (Original) -->
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&q=80&w=600" alt="iPhone 1">
+                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&q=80&w=600" alt="Samsung Galaxy">
+                    <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&q=80&w=600" alt="iPhone 2">
+                    <img src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&q=80&w=600" alt="Premium Foldable">
+                    <img src="https://images.unsplash.com/photo-1610792516304-36b5784efbca?auto=format&fit=crop&q=80&w=600" alt="Android Flagship">
+                    
+                    <!-- SET 2 (Duplicate for Seamless Infinite Scroll) -->
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&q=80&w=600" alt="iPhone 1">
+                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&q=80&w=600" alt="Samsung Galaxy">
+                    <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&q=80&w=600" alt="iPhone 2">
+                    <img src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&q=80&w=600" alt="Premium Foldable">
+                    <img src="https://images.unsplash.com/photo-1610792516304-36b5784efbca?auto=format&fit=crop&q=80&w=600" alt="Android Flagship">
                 </div>
                 <div class="showcase-label">iPhone • Samsung • Vivo • Realme</div>
             </div>
         </div>
 
-        <!-- Product Showcase 2: Smart TVs & Audio (Animated Slider) -->
+        <!-- Product Showcase 2: Smart TVs, Soundbars & Audio (Infinite Marquee) -->
         <div class="bento-box box-showcase-2">
             <div class="showcase-container">
-                <div class="slider-track">
-                    <!-- Image 1: TV/Audio Setup -->
+                <div class="slider-track" style="animation-direction: reverse; animation-duration: 30s;">
+                    <!-- SET 1 (Original) -->
                     <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&q=80&w=600" alt="Smart TVs">
-                    <!-- Image 2: Soundbar -->
                     <img src="https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&q=80&w=600" alt="Premium Soundbars">
-                    <!-- Image 3: Smart Accessories -->
-                    <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&q=80&w=600" alt="Smart Accessories">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=600" alt="Headphones">
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=600" alt="Earbuds">
+                    <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&q=80&w=600" alt="Smartwatch">
+                    
+                    <!-- SET 2 (Duplicate for Seamless Infinite Scroll) -->
+                    <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&q=80&w=600" alt="Smart TVs">
+                    <img src="https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&q=80&w=600" alt="Premium Soundbars">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=600" alt="Headphones">
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=600" alt="Earbuds">
+                    <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&q=80&w=600" alt="Smartwatch">
                 </div>
-                <div class="showcase-label">Smart TVs & Soundbars</div>
+                <div class="showcase-label">Audio & Smart Gadgets</div>
             </div>
         </div>
 
@@ -444,8 +471,8 @@
         <!-- Developer Footer Block with Logo -->
         <footer class="bento-box box-dev">
             <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/" target="_blank" class="dev-link">
-                <!-- Restored the requested developer logo -->
-                <img src="dev-logo.png.png" alt="Syed Zeeshaan Ali" class="dev-img" onerror="this.src='https://ui-avatars.com/api/?name=SZ&background=111&color=fff'">
+                <!-- Restored Developer Logo -->
+                <img src="dev-logo.png.png" alt="Syed Zeeshaan Ali" class="dev-img" onerror="this.src='https://ui-avatars.com/api/?name=SZ&background=c5a059&color=fff'">
                 <span class="dev-badge">Designed & Engineered By</span>
                 <span class="dev-name">SYED ZEESHAAN ALI</span>
             </a>
