@@ -18,22 +18,24 @@
     <!-- ================================================================= -->
 
     <style>
-        /* Modern Webflow-Inspired Variables */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+        /* High-End Glassmorphism Variables */
         :root {
-            --primary-accent: #2563eb;
-            --primary-glow: rgba(37, 99, 235, 0.4);
-            --bg-base: #0a0a0c;
-            --bg-surface: rgba(255, 255, 255, 0.03);
-            --bg-surface-hover: rgba(255, 255, 255, 0.05);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --shadow-float: 0 20px 40px rgba(0, 0, 0, 0.4);
-            --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.2, 1);
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            
+            --text-main: #ffffff;
+            --text-muted: #a0aab8;
+            --accent-glow: #4f46e5;
+            
+            --font-family: 'Outfit', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* Anti-Copy Protections & Resets */
+        /* Anti-Copy & Reset */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -45,25 +47,9 @@
             -webkit-touch-callout: none;
         }
 
-        @keyframes revealUp {
-            0% { opacity: 0; transform: translateY(30px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        @keyframes flowGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        /* Ambient Animated Background */
         body {
-            background-color: var(--bg-base);
-            /* Flowing abstract background */
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.15), transparent 45%),
-                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.1), transparent 40%);
-            background-size: 200% 200%;
-            animation: flowGradient 15s ease infinite;
+            background-color: #050505;
             color: var(--text-main);
             font-family: var(--font-family);
             padding-bottom: 60px;
@@ -71,122 +57,216 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            perspective: 1000px;
         }
 
-        /* Minimalist Developer Bar (Redesigned for Dark Mode) */
+        /* Glowing Orbs */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            animation: float 20s infinite alternate;
+        }
+        body::before {
+            background: rgba(79, 70, 229, 0.15);
+            top: -200px;
+            left: -200px;
+        }
+        body::after {
+            background: rgba(236, 72, 153, 0.15);
+            bottom: -200px;
+            right: -200px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 100px) scale(1.2); }
+        }
+
+        @keyframes revealUp {
+            0% { opacity: 0; transform: translateY(40px) scale(0.95) rotateX(10deg); }
+            100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); }
+        }
+
+        /* Minimalist Developer Bar */
         .dev-top-bar {
             width: 100%;
-            background: rgba(10, 10, 12, 0.8);
-            border-bottom: 1px solid var(--border-subtle);
+            background: rgba(10, 10, 10, 0.5);
+            border-bottom: 1px solid var(--glass-border);
             padding: 12px 20px;
             font-size: 11px;
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
         }
 
         .dev-top-bar img {
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--glass-highlight);
             object-fit: cover;
-            transition: var(--transition-smooth);
         }
 
         .dev-top-bar a {
             color: var(--text-main);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: var(--transition);
         }
-        
-        .dev-top-bar a:hover { color: var(--primary-accent); }
+        .dev-top-bar a:hover { color: #ec4899; text-shadow: 0 0 10px rgba(236, 72, 153, 0.5); }
 
         .container {
             width: 100%;
-            max-width: 520px;
-            padding: 40px 20px;
-            animation: revealUp 1s cubic-bezier(0.25, 1, 0.2, 1) forwards;
+            max-width: 540px;
+            padding: 30px 20px;
+            animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform-style: preserve-3d;
         }
 
-        /* Premium Glass Cards */
-        .premium-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 35px 30px;
+        /* 3D Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 35px 25px;
             margin-bottom: 24px;
-            box-shadow: var(--shadow-float);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            transition: var(--transition-smooth);
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s;
             position: relative;
             overflow: hidden;
+            transform: translateZ(0);
         }
 
-        .premium-card:hover {
-            background: var(--bg-surface-hover);
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.15);
+        .glass-card:hover {
+            transform: translateY(-5px) translateZ(20px) rotateX(2deg);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.05) inset;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Brand Showcase (3D Sliding Marquee) */
+        .brand-marquee-wrapper {
+            width: 100%;
+            max-width: 540px;
+            margin: 0 auto 20px auto;
+            padding: 20px 0;
+            overflow: hidden;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .brand-marquee {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: slide3D 20s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes slide3D {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .brand-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .brand-pill:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateZ(15px) scale(1.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .brand-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
         /* Brand Header */
         .brand-header {
             text-align: center;
-            margin-bottom: 24px;
         }
 
         .brand-logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 110px;
+            height: 110px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.1) inset;
             margin-bottom: 20px;
             object-fit: cover;
-            background-color: #fff;
-            transform: rotate(-3deg);
-            transition: var(--transition-smooth);
+            background-color: transparent;
+            transition: var(--transition);
+            transform: translateZ(30px);
         }
         
-        .brand-header:hover .brand-logo {
-            transform: rotate(0deg) scale(1.05);
+        .glass-card:hover .brand-logo {
+            transform: translateZ(40px) scale(1.1) rotate(5deg);
         }
 
         .brand-title {
             color: var(--text-main);
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 8px;
-            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #a0aab8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            transform: translateZ(20px);
         }
 
         .brand-subtitle {
             font-size: 15px;
             color: var(--text-muted);
             font-weight: 400;
-            line-height: 1.5;
+            transform: translateZ(10px);
         }
 
-        /* Sleek Action Buttons */
+        /* Glass Action Buttons */
         .action-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 15px;
             margin-top: 30px;
+            transform: translateZ(15px);
         }
 
         .btn-action {
@@ -195,140 +275,143 @@
             justify-content: center;
             gap: 8px;
             padding: 16px 12px;
-            border-radius: 12px;
+            border-radius: 16px;
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            backdrop-filter: blur(10px);
         }
 
-        .btn-action::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255,255,255,0.05);
-            z-index: -1;
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.2, 1);
+        .btn-action:hover { 
+            background: rgba(255, 255, 255, 0.15); 
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-
-        .btn-action:hover::before { transform: scaleY(1); }
-        .btn-action:active { transform: scale(0.97); }
+        .btn-action:active { transform: scale(0.95); }
 
         .btn-call { 
             grid-column: span 2; 
-            background: #fff; 
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); 
             color: #000; 
-            font-size: 16px; 
-            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+            border: none;
+            box-shadow: 0 10px 20px rgba(255,255,255,0.15);
         }
-        .btn-call:hover { box-shadow: 0 15px 30px rgba(255,255,255,0.2); }
+        .btn-call:hover { 
+            background: #fff;
+            box-shadow: 0 15px 30px rgba(255,255,255,0.3); 
+        }
         
-        .btn-whatsapp { color: #22c55e; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); grid-column: span 2; }
-        .btn-instagram { color: #ec4899; background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.2); }
-        .btn-maps { color: #ef4444; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); }
+        .btn-whatsapp { color: #4ade80; border-color: rgba(74, 222, 128, 0.3); }
+        .btn-whatsapp:hover { background: rgba(74, 222, 128, 0.15); }
+        .btn-instagram { color: #f472b6; border-color: rgba(244, 114, 182, 0.3); }
+        .btn-instagram:hover { background: rgba(244, 114, 182, 0.15); }
+        .btn-maps { color: #f87171; border-color: rgba(248, 113, 113, 0.3); }
+        .btn-maps:hover { background: rgba(248, 113, 113, 0.15); }
 
-        /* 3-Step Elegant Guide */
+        /* 3-Step Glass Guide */
         .steps-container {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            padding: 24px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 25px;
             margin-bottom: 24px;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
 
         .steps-title {
             color: var(--text-main);
-            font-size: 12px;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: 800;
             text-align: center;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         .step-item {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--text-muted);
-            margin: 14px 0;
+            margin: 15px 0;
             display: flex;
             align-items: center;
             gap: 16px;
-            font-weight: 400;
         }
 
-        .step-item b { color: var(--text-main); font-weight: 600; }
+        .step-item b { color: var(--text-main); }
 
         .step-circle {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            width: 32px;
-            height: 32px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 800;
             flex-shrink: 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
         }
 
-        /* Dynamic Review Box (Magical Interaction) */
+        /* Dynamic Review Box */
         .dynamic-review-container {
             text-align: center;
         }
 
         .dynamic-review-container h3 {
-            color: var(--text-main) !important;
-            font-size: 18px !important;
-            margin-bottom: 20px !important;
-            font-weight: 700 !important;
-            letter-spacing: -0.5px;
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            transform: translateZ(10px);
         }
 
         .review-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-subtle);
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
             padding: 30px 25px;
-            border-radius: 16px;
+            border-radius: 20px;
             font-size: 16px;
             line-height: 1.6;
-            color: var(--text-main);
+            color: #fff;
             font-weight: 400;
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: var(--transition);
             position: relative;
             margin-bottom: 15px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
 
         .review-box:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: var(--primary-accent);
-            transform: scale(1.02);
-            box-shadow: 0 0 30px var(--primary-glow);
+            border-color: #fff;
+            transform: scale(1.03) translateZ(20px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1), inset 0 0 0 transparent;
         }
 
         .review-box::after {
             content: "Tap anywhere inside to Copy & Rate ➔";
             display: block;
             font-size: 11px;
-            color: var(--text-main);
+            color: #fff;
             margin-top: 20px;
-            font-weight: 600;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
-            background: var(--primary-accent);
-            padding: 8px 16px;
-            border-radius: 20px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 30px;
             display: inline-block;
-            box-shadow: 0 4px 15px var(--primary-glow);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .refresh-btn {
@@ -336,7 +419,7 @@
             border: none;
             color: var(--text-muted);
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -344,46 +427,52 @@
             gap: 8px;
             width: 100%;
             padding: 12px;
-            transition: color 0.3s ease;
+            transition: var(--transition);
         }
-        .refresh-btn:hover { color: var(--text-main); }
+        .refresh-btn:hover { color: #fff; transform: rotate(1deg) scale(1.02); }
 
         /* Direct Review Button */
         .btn-direct-review {
             display: block;
             width: 100%;
             padding: 18px;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
             color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 800;
             text-align: center;
-            border-radius: 14px;
+            border-radius: 16px;
             text-decoration: none;
-            margin-top: 15px;
-            transition: var(--transition-smooth);
+            margin-top: 20px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         .btn-direct-review:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.1));
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px) translateZ(15px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
-        .btn-direct-review:active { transform: scale(0.97); }
+        .btn-direct-review:active { transform: scale(0.96); }
 
         /* Flash Animation */
         @keyframes flashSuccess {
-            0% { transform: scale(1); box-shadow: 0 0 0 transparent; }
-            50% { transform: scale(1.05); box-shadow: 0 0 50px var(--primary-glow); background: rgba(37, 99, 235, 0.1); border-color: var(--primary-accent); }
-            100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+            0% { transform: scale(1); background: rgba(0,0,0,0.3); }
+            50% { transform: scale(1.05); background: rgba(255,255,255,0.2); border-color: #fff; box-shadow: 0 0 40px rgba(255,255,255,0.3); }
+            100% { transform: scale(1); background: rgba(0,0,0,0.3); }
         }
         .flash-effect { animation: flashSuccess 0.6s cubic-bezier(0.25, 1, 0.2, 1); }
 
-        /* Toast */
+        /* Glass Toast */
         .toast {
             visibility: hidden;
             min-width: 280px;
-            background-color: #fff;
-            color: #000;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
             text-align: center;
             border-radius: 30px;
             padding: 16px 24px;
@@ -392,9 +481,9 @@
             left: 50%;
             bottom: 40px;
             transform: translateX(-50%);
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            font-size: 15px;
+            font-weight: 800;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         .toast.show {
@@ -402,21 +491,21 @@
             animation: toastFadeIn 0.5s cubic-bezier(0.25, 1, 0.2, 1), toastFadeOut 0.5s 2.2s cubic-bezier(0.25, 1, 0.2, 1);
         }
 
-        @keyframes toastFadeIn { from { bottom: 0; opacity: 0; transform: translate(-50%, 20px); } to { bottom: 40px; opacity: 1; transform: translate(-50%, 0); } }
-        @keyframes toastFadeOut { from { bottom: 40px; opacity: 1; transform: translate(-50%, 0); } to { bottom: 0; opacity: 0; transform: translate(-50%, 20px); } }
+        @keyframes toastFadeIn { from { bottom: 0; opacity: 0; transform: translate(-50%, 20px) scale(0.9); } to { bottom: 40px; opacity: 1; transform: translate(-50%, 0) scale(1); } }
+        @keyframes toastFadeOut { from { bottom: 40px; opacity: 1; transform: translate(-50%, 0) scale(1); } to { bottom: 0; opacity: 0; transform: translate(-50%, 20px) scale(0.9); } }
 
         /* Footer */
         .footer-copyright {
             text-align: center;
             font-size: 13px;
             color: var(--text-muted);
-            margin-top: 40px;
+            margin-top: 20px;
             padding: 24px 10px;
-            border-top: 1px solid var(--border-subtle);
             line-height: 1.8;
             width: 100%;
+            opacity: 0.8;
         }
-        .footer-copyright b { color: var(--text-main); font-weight: 600; }
+        .footer-copyright b { color: #fff; font-weight: 800; }
     </style>
 </head>
 <body oncontextmenu="return false;"> <!-- Disable Right Click -->
@@ -429,15 +518,37 @@
        <a href="https://www.instagram.com/syedzeeshaanali07/" target="_blank">Instagram</a>
     </div>
 
+    <!-- 3D MOBILE BRANDS SHOWCASE (Infinite Marquee) -->
+    <div class="brand-marquee-wrapper">
+        <div class="brand-marquee">
+            <!-- First Set -->
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" class="brand-icon" alt="Apple" onerror="this.style.display='none'"> Apple</div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" class="brand-icon" style="width:40px;" alt="Samsung" onerror="this.style.display='none'"></div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/OnePlus_logo.svg" class="brand-icon" style="width:50px;" alt="OnePlus" onerror="this.style.display='none'"></div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Vivo_logo_2019.svg" class="brand-icon" style="width:40px;" alt="Vivo" onerror="this.style.display='none'"></div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Oppo_Logo_2019.svg" class="brand-icon" style="width:40px;" alt="Oppo" onerror="this.style.display='none'"></div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" class="brand-icon" alt="Xiaomi" onerror="this.style.display='none'"> Xiaomi</div>
+            <div class="brand-pill">Realme</div>
+            <!-- Duplicated for seamless scrolling -->
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" class="brand-icon" alt="Apple" onerror="this.style.display='none'"> Apple</div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" class="brand-icon" style="width:40px;" alt="Samsung" onerror="this.style.display='none'"></div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/OnePlus_logo.svg" class="brand-icon" style="width:50px;" alt="OnePlus" onerror="this.style.display='none'"></div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Vivo_logo_2019.svg" class="brand-icon" style="width:40px;" alt="Vivo" onerror="this.style.display='none'"></div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Oppo_Logo_2019.svg" class="brand-icon" style="width:40px;" alt="Oppo" onerror="this.style.display='none'"></div>
+            <div class="brand-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" class="brand-icon" alt="Xiaomi" onerror="this.style.display='none'"> Xiaomi</div>
+            <div class="brand-pill">Realme</div>
+        </div>
+    </div>
+
     <div class="container">
 
         <!-- BRANDING & CONTACTS -->
-        <div class="premium-card brand-header">
-            <img src="cell-logo.png.jfif" alt="Cell Planet Khammam" class="brand-logo" onerror="this.src='https://via.placeholder.com/110/c5a059/ffffff?text=CP'">
+        <div class="glass-card brand-header">
+            <img src="cell-logo.png.jfif" alt="Cell Planet Khammam" class="brand-logo" onerror="this.src='https://via.placeholder.com/110/333333/ffffff?text=CP'">
             <h1 class="brand-title">CELL PLANET</h1>
             <p class="brand-subtitle">Smartphones, Premium Accessories & Rapid Repairs</p>
 
-            <div class="action-grid" style="margin-top: 25px;">
+            <div class="action-grid">
                 <a href="tel:9550677795" class="btn-action btn-call">📞 Call Cell Planet</a>
                 <a href="https://wa.me/919550677795" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp Us</a>
                 <a href="https://www.instagram.com/cellplanetkhammam?utm_source=qr&igsi=dzRuNjBtMGt5NTY0" target="_blank" class="btn-action btn-instagram">📸 Instagram</a>
@@ -446,7 +557,7 @@
         </div>
 
         <!-- 3-STEP GUIDE -->
-        <div class="steps-container">
+        <div class="steps-container glass-card" style="padding: 25px;">
             <div class="steps-title">Leave a 5-Star Review</div>
             <div class="step-item"><div class="step-circle">1</div> <b>Tap</b> the review box below to copy.</div>
             <div class="step-item"><div class="step-circle">2</div> <b>Paste</b> it into Google Maps.</div>
@@ -454,8 +565,8 @@
         </div>
 
         <!-- DYNAMIC 50+ REVIEW GENERATOR -->
-        <div class="premium-card dynamic-review-container">
-            <h3 style="color: var(--text-dark); font-size: 18px; margin-bottom: 20px; font-weight: 800;">📝 Auto-Generated Review</h3>
+        <div class="glass-card dynamic-review-container">
+            <h3>📝 Auto-Generated Review</h3>
             
             <!-- This box holds the dynamic text -->
             <div class="review-box" id="dynamicReviewBox" onclick="copyDynamicReview()">
@@ -468,9 +579,9 @@
         </div>
 
         <!-- DIRECT GOOGLE REVIEW LINK -->
-        <div class="premium-card" style="text-align: center;">
-            <h3 style="color: var(--text-dark); font-size: 16px; margin-bottom: 8px;">Prefer to write your own?</h3>
-            <p style="font-size: 13px; color: var(--text-muted);">Type your custom feedback directly on Google.</p>
+        <div class="glass-card" style="text-align: center;">
+            <h3 style="color: #fff; font-size: 18px; margin-bottom: 8px; font-weight: 800;">Prefer to write your own?</h3>
+            <p style="font-size: 14px; color: var(--text-muted);">Type your custom feedback directly on Google.</p>
             <a href="https://search.google.com/local/writereview?placeid=ChIJFxR6ddJZNDoR3SZrd7hOq0c" target="_blank" class="btn-direct-review">⭐ Open Google Review Bar</a>
         </div>
 
