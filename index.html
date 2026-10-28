@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cell Planet - Rate Your Experience</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center justify-center p-4">
 
+    <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden p-6 text-center">
+        
+        <!-- Store Branding -->
+        <div class="mb-6">
+            <div class="w-20 h-20 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-blue-500/20 mb-3">
+                <i class="fa-solid fa-mobile-screen-button text-3xl text-white"></i>
+            </div>
+            <h1 class="text-2xl font-extrabold tracking-tight">Cell Planet</h1>
+            <p class="text-xs text-slate-400 mt-1">Khammam's Trusted Mobile Store & Service Hub</p>
+        </div>
+
+        <!-- Interactive Rating Section -->
+        <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 mb-6">
+            <h2 class="text-sm font-semibold text-slate-300 mb-3">How was your experience with us today?</h2>
+            
+            <!-- Star Rating Interactive Row -->
+            <div id="star-container" class="flex justify-center gap-2 mb-4">
+                <button type="button" onclick="setRating(1)" class="star text-3xl text-slate-600 hover:text-amber-400 transition-colors" data-value="1"><i class="fa-solid fa-star"></i></button>
+                <button type="button" onclick="setRating(2)" class="star text-3xl text-slate-600 hover:text-amber-400 transition-colors" data-value="2"><i class="fa-solid fa-star"></i></button>
+                <button type="button" onclick="setRating(3)" class="star text-3xl text-slate-600 hover:text-amber-400 transition-colors" data-value="3"><i class="fa-solid fa-star"></i></button>
+                <button type="button" onclick="setRating(4)" class="star text-3xl text-slate-600 hover:text-amber-400 transition-colors" data-value="4"><i class="fa-solid fa-star"></i></button>
+                <button type="button" onclick="setRating(5)" class="star text-3xl text-slate-600 hover:text-amber-400 transition-colors" data-value="5"><i class="fa-solid fa-star"></i></button>
+            </div>
+
+            <!-- Review Text Generator Container -->
+            <div id="review-box" class="hidden text-left">
+                <label class="block text-xs font-medium text-slate-400 mb-1">Generated Review Comment:</label>
+                <textarea id="review-text" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-sm text-slate-200 focus:outline-none focus:border-blue-500 resize-none"></textarea>
+                
+                <div class="flex gap-2 mt-3">
+                    <button onclick="copyAndRedirect()" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-4 rounded-xl text-sm transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-copy"></i> Copy & Rate on Google
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Attribution -->
+        <div class="text-xs text-slate-500">
+            Crafted & Developed by Syed Zeeshaan Ali
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        let currentRating = 0;
+        const reviewTemplates = [
+            "Had an amazing experience at Cell Planet! Excellent customer service, genuine mobile accessories, and best pricing in Khammam. Highly recommended!",
+            "Superb store for purchasing smartphones and getting reliable repairs done. Very professional staff and transparent dealings.",
+            "Got my phone accessories and quick service done here. Top-notch quality and great support. Will definitely visit again!"
+        ];
+
+        function setRating(rating) {
+            currentRating = rating;
+            const stars = document.querySelectorAll('.star');
+            
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('text-slate-600');
+                    star.classList.add('text-amber-400');
+                } else {
+                    star.classList.remove('text-amber-400');
+                    star.classList.add('text-slate-600');
+                }
+            });
+
+            const reviewBox = document.getElementById('review-box');
+            if (rating >= 4) {
+                reviewBox.classList.remove('hidden');
+                // Pick a random review template
+                const randomReview = reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)];
+                document.getElementById('review-text').value = randomReview;
+            } else {
+                reviewBox.classList.add('hidden');
+                alert("Thank you for your feedback! We will work harder to improve your experience.");
+            }
+        }
+
+        function copyAndRedirect() {
+            const reviewText = document.getElementById('review-text');
+            reviewText.select();
+            reviewText.setSelectionRange(0, 99999); // For mobile devices
+            
+            navigator.clipboard.writeText(reviewText.value).then(() => {
+                // Replace with your actual Google Business review short link
+                const googleReviewUrl = "https://g.page/r/YOUR_GOOGLE_REVIEW_LINK/review";
+                
+                setTimeout(() => {
+                    window.location.href = googleReviewUrl;
+                }, 600);
+            });
+        }
+    </script>
+</body>
+</html>
